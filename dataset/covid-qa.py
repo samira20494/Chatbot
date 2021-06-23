@@ -1,10 +1,10 @@
 import json
 
-f_in = open('200421_covidQA.json')
+f_in = open('COVID-QA.json')
 json_data = json.load(f_in)
 data = json_data['data']
 
-f_out = open('200421_covidQA.txt', 'a')
+f_out = open('COVID-QA.txt', 'a')
 
 for context in range(0, len(data)):
     for parag in range(0, len(data[context]['paragraphs'])):
