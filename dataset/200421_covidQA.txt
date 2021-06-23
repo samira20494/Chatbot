@@ -1,0 +1,120 @@
+question: What is the size of bovine coronavirus?
+answer: 31 kb
+
+question: What is the molecular structure of bovine coronavirus?
+answer: single-stranded, linear, and nonsegmented RNA
+
+question: How many nucleotides does bovine coronavirus contain?
+answer: 30,847 nucleotides
+
+question: What is the size of the orf1ab gene in bovine coronavirus?
+answer: 20kb
+
+question: Is the orf1ab gene at the 3' or 5' end of the bovine coronavirus genome?
+answer: 5= side
+
+question: What is the distance between the p4.7 and p12.7 genes in the Irish versus Japanese equine coronavirus variants?
+answer: 544 base pairs
+
+question: What is the difference between the Tokachi09 and Irish coronavirus genomic sequences?
+answer: 148-nucleotide insertion
+
+question: What suggests that Irish equine coronaviruses may have a low genetic diversity?
+answer: high level of homology between viruses
+
+question: Where have most outbreaks of equine coronavirus occurred in the United States?
+answer: adult riding, racing and show horses
+
+question: What type of coronavirus was detected in R. affinis and R. sinicus species?
+answer: BtCoV/Rh/YN2012
+
+question: What is a natural reservoir of coronavirus?
+answer: Bats
+
+question: What is the genome size of the coronavirus?
+answer: 26-32 kb
+
+question: What is the structure of the coronavirus?
+answer: enveloped, non-segmented, positive-strand RNA viruses
+
+question: What animals do gamma and delta coronavirus mainly infect?
+answer: birds
+
+question: How many types of coronaviruses are known to cause human disease?
+answer: Six
+
+question: What is the conclusion of the coronavirus long-term surveillance studies?
+answer: Rhinolophus bats seem to harbor a wide diversity of CoVs
+
+question: When did we discover that SARS-CoV-2, which causes COVID-19, was a novel coronavirus?
+answer: 26 January 2020
+
+question: What other betacoronaviruses are zoonotic in origin?
+answer: The severe acute respiratory syndrome coronavirus (SARS-CoV) and Middle East respiratory syndrome coronavirus (MERS-CoV)
+
+question: What is the genus of the SARS coronavirus?
+answer: Betacoronavirus
+
+question: What is the family of the SARS coronavirus?
+answer: Coronaviridae
+
+question: Is the SARS coronavirus enveloped?
+answer: enveloped
+
+question: Is the SARS coronavirus single-stranded or double-stranded?
+answer: single-stranded
+
+question: How many laboratory-confirmed cases of SARS coronavirus infections were reported between November 2002 and July 2003?
+answer: At least 8,098
+
+question: What was the fatality rate of the SARS coronavirus outbreak between November 2002 and July 2003?
+answer: 9.6%
+
+question: What viruses are similar to the COVID-19 coronavirus?
+answer: MERS-CoV and SARS-CoV.
+
+question: What are coronaviruses?
+answer: s are spherical, enveloped, and the largest of positive-strand RNA v
+
+question: What animals can carry coronavirus?
+answer: uding birds, farm animals, pets, camels, an
+
+question: What is a key assumption of a semi-mechanistic Bayesian hierarchical model used for coronavirus?
+answer: each intervention has the same effect on the
+reproduction number across countries and over time
+
+question: Estimated number of people in Italy infected with coronavirus by March 28th?
+answer: cumulatively, 5.9 [1.9-15.2] million people have been
+infected as of March 28th
+
+question: Why is there high uncertainty in estimating the impact of interventions against the coronavirus?
+answer: too early to detect substantial
+intervention impact in many countries at earlier stages of their epidemic
+
+question: Why is it statistically impossible to determine which individual intervention had the greatest effect on reducing the coronavirus reproduction number?
+answer: close spacing of interventions in time
+
+question: What is an example of a case-based measure against coronavirus?
+answer: strong recommendations or laws to the general
+public and primary care about self—isolation when showing COVID-19-like symptoms
+
+question: What are the descriptive statistics for the onset-to-death for coronavirus?
+answer: Gamma distributed with a mean of 18.8 days and a
+coefficient of va riation 0.45
+
+question: What are the descriptive statistics for the incubation period for coronavirus?
+answer: distribution is Gamma distributed with mean 5.1 days and coefficient of variation
+0.86
+
+question: What is the estimated infection-to-death distribution's mean for coronavirus?
+answer: 23.9 days
+
+question: When did the Chinese authorities share the sequence of a novel coronavirus ?
+answer: 12 January 2020
+
+question:  What is important for understanding the origin and evolution of this novel lineage B betacoronavirus.
+answer: Learning from the roles of civet in SARS and camel in MERS, hunting for the animal source of 2019-nCoV and its more ancestral virus
+
+question: Being closest to 2019-nCoV, which species do the two bat SARS-related coronavirus ZXC21 and ZC45 infect?
+answer: can infect suckling rats and cause inflammation in the brain tissue, and pathological changes in lung & intestine. 
+
