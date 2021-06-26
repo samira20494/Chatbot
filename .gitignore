@@ -1,6 +1,7 @@
 # project
 .idea
 models
+src/my_imdb_model
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
