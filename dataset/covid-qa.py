@@ -1,24 +1,28 @@
 import json
 
-f_in = open('COVID-QA.json')
-json_data = json.load(f_in)
-data = json_data['data']
 
-f_out = open('COVID-QA.txt', 'a')
+def create_database():
+    f_in = open('COVID-QA.json')
+    json_data = json.load(f_in)
+    data = json_data['data']
 
-for section in range(0, len(data)):
-    for parag in range(0, len(data[section]['paragraphs'])):
-        context = data[section]['paragraphs'][parag]['context']
-        if context.find('corona') > 0:
-            f_out.writelines(
-                "\n\n######################### section: " + str(section) + " ################################\n")
-            f_out.writelines("context: " + context + "\n")
-            for qas in range(0, len(data[section]['paragraphs'][parag]['qas'])):
-                q = data[section]['paragraphs'][parag]['qas'][qas]['question']
-                for ans in range(0, len(data[section]['paragraphs'][parag]['qas'][qas]['answers'])):
-                    a = data[section]['paragraphs'][parag]['qas'][qas]['answers'][ans]['text']
-                f_out.writelines("question: " + q + "\n")
-                f_out.writelines("answer: " + a + "\n\n")
+    database = {
+        "question": [],
+        "context": [],
+        "answers": []
+    }
 
-f_in.close()
-f_out.close()
+    for section in range(0, len(data)):
+        for parag in range(0, len(data[section]['paragraphs'])):
+            context = data[section]['paragraphs'][parag]['context']
+            if context.find('corona') > 0:
+                database["context"].append(context)
+                for qas in range(0, len(data[section]['paragraphs'][parag]['qas'])):
+                    question = data[section]['paragraphs'][parag]['qas'][qas]['question']
+                    database["question"].append(question)
+                    for ans in range(0, len(data[section]['paragraphs'][parag]['qas'][qas]['answers'])):
+                        answer = data[section]['paragraphs'][parag]['qas'][qas]['answers'][ans]['text']
+                        answer_start = data[section]['paragraphs'][parag]['qas'][qas]['answers'][ans]['answer_start']
+                        database["answers"].append({"text": answer, "answer_start": [answer_start]})
+
+    return database
