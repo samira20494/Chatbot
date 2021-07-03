@@ -85,7 +85,7 @@ tokenizer = AutoTokenizer.from_pretrained(cf.setting["model_checkpoint"])
 dataset = create_dataset()
 
 tokenized_datasets = dataset.map(prepare_train_features, batched=True, remove_columns=dataset["train"].column_names)
-print(tokenized_datasets['train'][0])
+print(tokenized_datasets["train"][0])
 
 # Fine-tuning the model
 model = AutoModelForQuestionAnswering.from_pretrained(cf.setting["model_checkpoint"])

@@ -6,9 +6,9 @@ from datasets import DatasetDict, Dataset
 import config as cf
 
 def load_data():
-    f_in = open('COVID-QA.json')
+    f_in = open("COVID-QA.json")
     json_data = json.load(f_in)
-    data = json_data['data']
+    data = json_data["data"]
 
 
     database = {
@@ -18,16 +18,16 @@ def load_data():
     }
 
     for section in range(0, len(data)):
-        for parag in range(0, len(data[section]['paragraphs'])):
-            context = data[section]['paragraphs'][parag]['context']
-            if context.find('corona') > 0:
-                for qas in range(0, len(data[section]['paragraphs'][parag]['qas'])):
-                    question = data[section]['paragraphs'][parag]['qas'][qas]['question']
+        for parag in range(0, len(data[section]["paragraphs"])):
+            context = data[section]["paragraphs"][parag]["context"]
+            if context.find("corona") > 0:
+                for qas in range(0, len(data[section]["paragraphs"][parag]["qas"])):
+                    question = data[section]["paragraphs"][parag]["qas"][qas]["question"]
                     database["question"].append(question)
                     database["context"].append(context)
-                    for ans in range(0, len(data[section]['paragraphs'][parag]['qas'][qas]['answers'])):
-                        answer = data[section]['paragraphs'][parag]['qas'][qas]['answers'][ans]['text']
-                        answer_start = data[section]['paragraphs'][parag]['qas'][qas]['answers'][ans]['answer_start']
+                    for ans in range(0, len(data[section]["paragraphs"][parag]["qas"][qas]["answers"])):
+                        answer = data[section]["paragraphs"][parag]["qas"][qas]["answers"][ans]["text"]
+                        answer_start = data[section]["paragraphs"][parag]["qas"][qas]["answers"][ans]["answer_start"]
                         database["answers"].append({"text": answer, "answer_start": [answer_start]})
 
     return database
