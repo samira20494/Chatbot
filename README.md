@@ -25,6 +25,9 @@ in your browser. You should be able to see this:
 
 ## Training data
 
+To load the data from json file in a proper format and fine tune the model run: 
+`cd src` and then: `python finetune_model.py`
+at the end you will have the model saved in `src/test-covid-trained` folder. 
 
 
 

@@ -1,6 +1,8 @@
 # project
 .idea
 models
+src/test-covid
+src/test-covid-trained
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
