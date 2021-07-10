@@ -81,7 +81,7 @@ def prepare_train_features(examples):
 
 
 tokenizer = AutoTokenizer.from_pretrained(cf.setting["model_checkpoint"])
-model = AutoModelForQuestionAnswering.from_pretrained(cf.setting["model_checkpoint"])
+model = TFAutoModelForQuestionAnswering.from_pretrained(cf.setting["model_checkpoint"])
 
 data = load_data(sampling=True)
 dataset = create_dataset(data)
@@ -117,7 +117,7 @@ training_args = TrainingArguments(
 
 data_collator = default_data_collator
 
-trainer = Trainer(
+trainer = TFTrainer(
     model,
     training_args,
     train_dataset=tokenized_datasets["train"],

@@ -1,10 +1,11 @@
-import torch
-from transformers import AutoModelForQuestionAnswering
-from transformers import AutoTokenizer
+import tensorflow as tf
+from transformers import AutoTokenizer, TFAutoModelForQuestionAnswering
 
 
 tokenizer = AutoTokenizer.from_pretrained('covid-trained-tf/')
-model = AutoModelForQuestionAnswering.from_pretrained('covid-trained-tf/')
+model = TFAutoModelForQuestionAnswering.from_pretrained('covid-trained-tf/', from_pt=True)
+
+
 
 text = r"""
 B ovine coronavirus (BCoV) belongs to the Nidovirales order, the Coronaviridae family, the Coronavirinae subfamily, and the Betacoronavirus (https://talk.ictvonline.org/ ICTV/proposals/2008.085-122V.v4.Coronaviridae.pdf). Its genome is a single-stranded, linear, and nonsegmented RNA of around 31 kb. BCoV is responsible for respiratory and enteric diseases in cattle, particularly during winter (1, 2) . To date, the 19 complete BCoV genome sequences available in GenBank databases (consulted on 17 January 2017) originated from the United States or Asia. Here, we report the first complete genome sequence of a BCoV detected in France.
@@ -18,19 +19,17 @@ Accession number(s). The complete genome sequence sequence of the BCoV/FRA-EPI/C
 
 question = "What is the molecular structure of bovine coronavirus?"
 
-inputs = tokenizer.encode_plus(question, text, add_special_tokens=True, return_tensors="pt", truncation=True)
-input_ids = inputs["input_ids"].tolist()[0]
+inputs = tokenizer.encode_plus(question, text, add_special_tokens=True, return_tensors="tf", truncation=True)
+input_ids = inputs["input_ids"].numpy()[0]
 
 text_tokens = tokenizer.convert_ids_to_tokens(input_ids)
-output = model(**inputs)
-
-answer_start = torch.argmax(
-    output.start_logits
-)  # Get the most likely beginning of answer with the argmax of the score
+output = model(inputs)
+answer_start = tf.argmax(
+    output.start_logits, axis=1
+).numpy()[0]  # Get the most likely beginning of answer with the argmax of the score
 answer_end = (
-    torch.argmax(output.end_logits) + 1
-)  # Get the most likely end of answer with the argmax of the score
-
+        tf.argmax(output.end_logits, axis=1) + 1
+).numpy()[0]  # Get the most likely end of answer with the argmax of the score
 answer = tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
 
 print(f"Question: {question}")
