@@ -2,7 +2,7 @@ from transformers import AutoTokenizer
 from preprocessing import create_dataset, load_data
 import config as cf
 from transformers import default_data_collator
-from transformers import TFAutoModelForQuestionAnswering, Trainer, TFTrainer, TrainingArguments, TFTrainingArguments, TFDistilBertForQuestionAnswering
+from transformers import Trainer, TrainingArguments
 from transformers import AutoModelForQuestionAnswering
 
 def prepare_train_features(examples):
@@ -81,10 +81,10 @@ def prepare_train_features(examples):
 
 
 tokenizer = AutoTokenizer.from_pretrained(cf.setting["model_checkpoint"])
-model = TFAutoModelForQuestionAnswering.from_pretrained(cf.setting["model_checkpoint"])
+model = AutoModelForQuestionAnswering.from_pretrained(cf.setting["model_checkpoint"])
 
-data = load_data(sampling=True)
-dataset = create_dataset(data)
+# data = load_data(sampling=True)
+dataset = create_dataset(sampling=True)
 
 tokenized_datasets = dataset.map(prepare_train_features, batched=True, remove_columns=dataset["train"].column_names)
 # print(tokenized_datasets["train"][0])
@@ -92,7 +92,7 @@ tokenized_datasets = dataset.map(prepare_train_features, batched=True, remove_co
 # Fine-tuning the model
 
 training_args = TrainingArguments(
-    f"test-covid",
+    f"../models/test-covid",
     evaluation_strategy="epoch",
     learning_rate=2e-5,
     per_device_train_batch_size=cf.setting["batch_size"],
@@ -117,7 +117,7 @@ training_args = TrainingArguments(
 
 data_collator = default_data_collator
 
-trainer = TFTrainer(
+trainer = Trainer(
     model,
     training_args,
     train_dataset=tokenized_datasets["train"],
@@ -127,5 +127,5 @@ trainer = TFTrainer(
 )
 
 trainer.train()
-trainer.save_model("covid-trained-tf")
+trainer.save_model("covid-trained")
 

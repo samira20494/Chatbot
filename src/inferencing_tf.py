@@ -2,7 +2,7 @@ import tensorflow as tf
 from transformers import AutoTokenizer, TFAutoModelForQuestionAnswering
 
 
-tokenizer = AutoTokenizer.from_pretrained('covid-trained-tf/')
+tokenizer = AutoTokenizer.from_pretrained('../models/covid-trained-tf/')
 model = TFAutoModelForQuestionAnswering.from_pretrained('covid-trained-tf/', from_pt=True)
 
 
