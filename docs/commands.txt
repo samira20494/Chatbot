@@ -10,4 +10,4 @@ https://rasa.com/docs/rasa/pages/http-api#operation/getVersion
 
 rasa run -m models --enable-api --cors "*" --debug & rasa run actions
 
-
+to see running process: ps -fA | grep python

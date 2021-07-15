@@ -8,6 +8,10 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - hello_world
+
+actions:
+  - action_hello_world
 
 responses:
   utter_greet:

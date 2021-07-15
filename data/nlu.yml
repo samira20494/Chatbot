@@ -90,3 +90,12 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+
+- intent: hello_world
+  examples: |
+    – Say hello world
+    – print hello world
+    – utter hello world for me
+
+

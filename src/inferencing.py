@@ -1,10 +1,10 @@
 import torch
 from transformers import AutoModelForQuestionAnswering
 from transformers import AutoTokenizer
+import config as cf
 
-
-tokenizer = AutoTokenizer.from_pretrained('../models/covid-trained-tf/')
-model = AutoModelForQuestionAnswering.from_pretrained('covid-trained-tf/')
+tokenizer = AutoTokenizer.from_pretrained(cf.setting["model_checkpoint"])
+model = AutoModelForQuestionAnswering.from_pretrained(cf.setting["model_checkpoint"])
 
 text = r"""
 B ovine coronavirus (BCoV) belongs to the Nidovirales order, the Coronaviridae family, the Coronavirinae subfamily, and the Betacoronavirus (https://talk.ictvonline.org/ ICTV/proposals/2008.085-122V.v4.Coronaviridae.pdf). Its genome is a single-stranded, linear, and nonsegmented RNA of around 31 kb. BCoV is responsible for respiratory and enteric diseases in cattle, particularly during winter (1, 2) . To date, the 19 complete BCoV genome sequences available in GenBank databases (consulted on 17 January 2017) originated from the United States or Asia. Here, we report the first complete genome sequence of a BCoV detected in France.
