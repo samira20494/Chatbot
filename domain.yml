@@ -9,9 +9,11 @@ intents:
   - mood_unhappy
   - bot_challenge
   - hello_world
+  - covid
 
 actions:
   - action_hello_world
+  - action_covid
 
 responses:
   utter_greet:

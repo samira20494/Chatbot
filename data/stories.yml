@@ -36,3 +36,10 @@ stories:
     - intent: hello_world
     - action: action_hello_world
 
+- story: path covid
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: covid
+    - action: action_covid
+

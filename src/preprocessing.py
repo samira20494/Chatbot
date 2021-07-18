@@ -22,7 +22,6 @@ def load_data(path, sample_num = -1):
     for section in range(0, num):
         for parag in range(0, len(data[section]["paragraphs"])):
             context = data[section]["paragraphs"][parag]["context"]
-            # text = extract_text_from_context(context)
             for qas in range(0, len(data[section]["paragraphs"][parag]["qas"])):
                 question = data[section]["paragraphs"][parag]["qas"][qas]["question"]
                 for ans in range(0, len(data[section]["paragraphs"][parag]["qas"][qas]["answers"])):
@@ -34,14 +33,6 @@ def load_data(path, sample_num = -1):
 
     return dataset
 
-
-def extract_text_from_context(context):
-    text_position_in_context = context.find("Text: ")
-    if text_position_in_context > -1:
-        text = context[text_position_in_context + 6:]
-    else:
-        text = ""
-    return text
 
 
 def split_database(dataset, train_rate=0.9):
@@ -77,3 +68,16 @@ def create_dataset(sampling=False):
     return dataset
 
 
+def load_context_for_inference(path):
+    path = Path(path)
+    with open(path, 'rb') as f:
+        json_data = json.load(f)
+        data = json_data["data"]
+
+    context = ""
+
+    for section in range(0, len(data)):
+        for parag in range(0, len(data[section]["paragraphs"])):
+            context += data[section]["paragraphs"][parag]["context"]
+
+    return context

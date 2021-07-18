@@ -98,4 +98,10 @@ nlu:
     – print hello world
     – utter hello world for me
 
+- intent: covid
+  examples: |
+    - How does gender influence MERS-COV infection?
+    - What is the effect of CD40L on B Cells?
+    - When did the last Director General of the WHO resign?
+
 

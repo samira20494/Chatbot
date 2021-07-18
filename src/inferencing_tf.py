@@ -1,10 +1,10 @@
 import tensorflow as tf
 from transformers import AutoTokenizer, TFAutoModelForQuestionAnswering
+import config as cf
 
 
-tokenizer = AutoTokenizer.from_pretrained('../models/covid-trained-tf/')
-model = TFAutoModelForQuestionAnswering.from_pretrained('covid-trained-tf/', from_pt=True)
-
+tokenizer = AutoTokenizer.from_pretrained(cf.setting["model_checkpoint"])
+model = TFAutoModelForQuestionAnswering.from_pretrained(cf.setting["model_checkpoint"], from_pt=True)
 
 
 text = r"""
