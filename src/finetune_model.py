@@ -1,9 +1,11 @@
-from transformers import AutoTokenizer
-from preprocessing import create_dataset, load_data
-import config as cf
-from transformers import default_data_collator
-from transformers import Trainer, TrainingArguments
 from transformers import AutoModelForQuestionAnswering
+from transformers import AutoTokenizer
+from transformers import Trainer, TrainingArguments
+from transformers import default_data_collator
+
+import config as cf
+from preprocessing import create_dataset
+
 
 def prepare_train_features(examples):
     # Tokenize our examples with truncation and padding, but keep the overflows using a stride. This results
@@ -83,11 +85,9 @@ def prepare_train_features(examples):
 tokenizer = AutoTokenizer.from_pretrained(cf.setting["model_checkpoint"])
 model = AutoModelForQuestionAnswering.from_pretrained(cf.setting["model_checkpoint"])
 
-# data = load_data(sampling=True)
 dataset = create_dataset(sampling=True)
 
 tokenized_datasets = dataset.map(prepare_train_features, batched=True, remove_columns=dataset["train"].column_names)
-# print(tokenized_datasets["train"][0])
 
 # Fine-tuning the model
 
@@ -99,21 +99,7 @@ training_args = TrainingArguments(
     per_device_eval_batch_size=cf.setting["batch_size"],
     num_train_epochs=3,
     weight_decay=0.01,
-
 )
-
-
-
-# training_args = TFTrainingArguments(
-#     output_dir='./results',          # output directory
-#     num_train_epochs=3,              # total number of training epochs
-#     per_device_train_batch_size=16,  # batch size per device during training
-#     per_device_eval_batch_size=64,   # batch size for evaluation
-#     warmup_steps=500,                # number of warmup steps for learning rate scheduler
-#     weight_decay=0.01,               # strength of weight decay
-#     logging_dir='./logs',            # directory for storing logs
-#     logging_steps=10,
-# )
 
 data_collator = default_data_collator
 
@@ -128,4 +114,3 @@ trainer = Trainer(
 
 trainer.train()
 trainer.save_model("covid-trained")
-

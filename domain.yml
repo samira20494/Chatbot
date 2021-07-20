@@ -12,7 +12,6 @@ intents:
   - covid
 
 actions:
-  - action_hello_world
   - action_covid
 
 responses:

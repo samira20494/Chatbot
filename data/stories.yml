@@ -29,13 +29,6 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-- story: path hello world
-  steps:
-    - intent: greet
-    - action: utter_greet
-    - intent: hello_world
-    - action: action_hello_world
-
 - story: path covid
   steps:
     - intent: greet

@@ -92,16 +92,19 @@ nlu:
     - am I talking to a human?
 
 
-- intent: hello_world
-  examples: |
-    – Say hello world
-    – print hello world
-    – utter hello world for me
-
 - intent: covid
   examples: |
+    - covid
+    - corona
+    - coronavirus
+    - covid-19
+    - sars-cov-2
+    - coronavirus prevention
+    - coronavirus symptoms
+    - how do I know if I have covid-19
+    - what should I do if I have covid-19
+    - covid testing
+    - covid vaccinations
     - How does gender influence MERS-COV infection?
     - What is the effect of CD40L on B Cells?
     - When did the last Director General of the WHO resign?
-
-
