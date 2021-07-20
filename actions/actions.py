@@ -12,7 +12,7 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import tensorflow as tf
-from transformers import AutoModelForQuestionAnswering
+from transformers import TFAutoModelForQuestionAnswering
 from transformers import AutoTokenizer
 import src.config as cf
 from src.preprocessing import load_context_for_inference
@@ -31,14 +31,18 @@ class ActionCovid(Action):
         text = load_context_for_inference("src/data/COVID-QA.json")
 
         tokenizer = AutoTokenizer.from_pretrained(cf.setting["model_checkpoint"])
-        model = AutoModelForQuestionAnswering.from_pretrained(cf.setting["model_checkpoint"])
+        model = TFAutoModelForQuestionAnswering.from_pretrained(cf.setting["model_checkpoint"])
 
-        inputs = tokenizer.encode_plus(question, text, add_special_tokens=True, return_tensors="pt", truncation=True)
-        input_ids = inputs["input_ids"].tolist()[0]
+        inputs = tokenizer(question, text, add_special_tokens=True, return_tensors="tf", truncation=True)
+        input_ids = inputs["input_ids"].numpy()[0]
 
-        output = model(**inputs)
-        answer_start = tf.argmax([output['start_logits']], axis=1).numpy()[0]
-        answer_end = (tf.argmax([output['end_logits']], axis=1) + 1).numpy()[0]
+        output = model(inputs)
+        answer_start = tf.argmax(
+            output.start_logits, axis=1
+        ).numpy()[0]  # Get the most likely beginning of answer with the argmax of the score
+        answer_end = (
+                tf.argmax(output.end_logits, axis=1) + 1
+        ).numpy()[0]  # Get the most likely end of answer with the argmax of the score
         answer = tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
         dispatcher.utter_message(text=f"{answer}")
 
