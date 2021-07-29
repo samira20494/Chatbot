@@ -21,7 +21,7 @@ from src.preprocessing import load_context_for_inference
 class ActionCovid(Action):
 
     def name(self) -> Text:
-        return "action_covid"
+        return "action_answer_covid_question"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,

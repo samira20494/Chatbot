@@ -29,10 +29,10 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-- story: path covid
+- story: covid question path
   steps:
     - intent: greet
     - action: utter_greet
     - intent: covid
-    - action: action_covid
+    - action: action_answer_covid_question
 

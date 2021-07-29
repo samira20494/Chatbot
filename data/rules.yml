@@ -15,4 +15,4 @@ rules:
 - rule: answer covid question
   steps:
   - intent: covid
-  - action: action_covid
+  - action: action_answer_covid_question
