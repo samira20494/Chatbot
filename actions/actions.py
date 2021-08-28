@@ -44,6 +44,8 @@ class ActionCovid(Action):
                 tf.argmax(output.end_logits, axis=1) + 1
         ).numpy()[0]  # Get the most likely end of answer with the argmax of the score
         answer = tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
+        start = answer.index("SEP") + 4
+        answer = answer[start:-5]
         dispatcher.utter_message(text=f"{answer}")
 
         return []
