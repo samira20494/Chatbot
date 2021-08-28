@@ -1,63 +1,65 @@
 import json
 import random
+from pathlib import Path
 
 import pyarrow as pa
 from datasets import DatasetDict, Dataset
-import config as cf
-
-def load_data():
-    f_in = open("COVID-QA.json")
-    json_data = json.load(f_in)
-    data = json_data["data"]
 
 
-    database = {
+def load_data(path, sample_num = -1):
+    path = Path(path)
+    with open(path, 'rb') as f:
+        json_data = json.load(f)
+        data = json_data["data"]
+
+    dataset = {
         "question": [],
         "context": [],
         "answers": []
     }
 
-    for section in range(0, len(data)):
+    num = sample_num if sample_num > 0 else len(data)
+    for section in range(0, num):
         for parag in range(0, len(data[section]["paragraphs"])):
             context = data[section]["paragraphs"][parag]["context"]
-            if context.find("corona") > 0:
-                for qas in range(0, len(data[section]["paragraphs"][parag]["qas"])):
-                    question = data[section]["paragraphs"][parag]["qas"][qas]["question"]
-                    database["question"].append(question)
-                    database["context"].append(context)
-                    for ans in range(0, len(data[section]["paragraphs"][parag]["qas"][qas]["answers"])):
-                        answer = data[section]["paragraphs"][parag]["qas"][qas]["answers"][ans]["text"]
-                        answer_start = data[section]["paragraphs"][parag]["qas"][qas]["answers"][ans]["answer_start"]
-                        database["answers"].append({"text": answer, "answer_start": [answer_start]})
+            for qas in range(0, len(data[section]["paragraphs"][parag]["qas"])):
+                question = data[section]["paragraphs"][parag]["qas"][qas]["question"]
+                for ans in range(0, len(data[section]["paragraphs"][parag]["qas"][qas]["answers"])):
+                    answer = data[section]["paragraphs"][parag]["qas"][qas]["answers"][ans]["text"]
+                    answer_start = data[section]["paragraphs"][parag]["qas"][qas]["answers"][ans]["answer_start"]
+                    dataset["context"].append(context)
+                    dataset["question"].append(question)
+                    dataset["answers"].append({"text": answer, "answer_start": [answer_start]})
 
-    return database
+    return dataset
 
 
-def split_database(database, train_rate=0.9):
-    db_length = len(database["question"])
+
+def split_database(dataset, train_rate=0.9):
+    db_length = len(dataset["question"])
     random.seed(4)
-    all = list(zip(database["question"], database["answers"], database["context"]))
+    all = list(zip(dataset["question"], dataset["answers"], dataset["context"]))
     random.shuffle(all)
-    database["question"], database["answers"], database["context"] = zip(*all)
+    dataset["question"], dataset["answers"], dataset["context"] = zip(*all)
 
     train_no = round(db_length * train_rate)
     train = {
-        "question": database["question"][0:train_no],
-        "context": database["context"][0:train_no],
-        "answers": database["answers"][0:train_no]
+        "question": dataset["question"][0:train_no],
+        "context": dataset["context"][0:train_no],
+        "answers": dataset["answers"][0:train_no]
     }
     validation = {
-        "question": database["question"][train_no+1:],
-        "context": database["context"][train_no+1:],
-        "answers": database["answers"][train_no+1:]
+        "question": dataset["question"][train_no+1:],
+        "context": dataset["context"][train_no+1:],
+        "answers": dataset["answers"][train_no+1:]
     }
 
     return train, validation
 
-def create_dataset():
-    data = load_data()
 
-    train, validation = split_database(data)
+def create_dataset(sampling=False):
+    train = load_data("data/COVID-QA-train.json", 15 if sampling else -1)
+    validation = load_data("data/COVID-QA-val.json", 5 if sampling else -1)
 
     train_table = pa.Table.from_pydict(train)
     validation_table = pa.Table.from_pydict(validation)
@@ -66,3 +68,16 @@ def create_dataset():
     return dataset
 
 
+def load_context_for_inference(path):
+    path = Path(path)
+    with open(path, 'rb') as f:
+        json_data = json.load(f)
+        data = json_data["data"]
+
+    context = ""
+
+    for section in range(0, len(data)):
+        for parag in range(0, len(data[section]["paragraphs"])):
+            context += data[section]["paragraphs"][parag]["context"]
+
+    return context

@@ -90,3 +90,23 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+
+- intent: covid
+  examples: |
+    - covid
+    - corona
+    - coronavirus
+    - covid-19
+    - sars-cov-2
+    - coronavirus prevention
+    - coronavirus symptoms
+    - how do I know if I have covid-19
+    - what should I do if I have covid-19
+    - covid testing
+    - covid vaccinations
+    - How does gender influence MERS-COV infection?
+    - What is the effect of CD40L on B Cells?
+    - When did the last Director General of the WHO resign?
+    - How many nucleotides does bovine coronavirus contain?
+    - What is the size of the orf1ab gene in bovine coronavirus?

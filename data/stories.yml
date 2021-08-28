@@ -28,3 +28,11 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+- story: covid question path
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: covid
+    - action: action_answer_covid_question
+
