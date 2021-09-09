@@ -1,0 +1,3 @@
+export SLACK_BOT_CHANNEL=C02DCTRBSLQ
+export SLACK_BOT_TOKEN=[to get this value go to https://api.slack.com/apps and click on COVID-BOT app, you can find it in your app's settings under Install App > Bot User OAuth Access Token.]
+export SLACK_BOT_SIGNING_SECRET=[to get this value go to https://api.slack.com/apps and click on COVID-BOT app, you can find it in your app's settings under Basic Information > App Credentials.]
