@@ -1,8 +1,10 @@
 # project
 .idea
+.envrc
+docs
+model
 models
 src/models
-.envrc
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
