@@ -1,5 +1,7 @@
 # project
 .idea
+documents
+model
 models
 src/models
 .envrc
