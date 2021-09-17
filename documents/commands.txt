@@ -12,3 +12,4 @@ rasa run -m models --enable-api --cors "*" --debug & rasa run actions
 
 to see running process: ps -fA | grep python
 
+# https://54db-2607-fea8-3ca0-70f-91fb-42db-f609-44af.ngrok.io/webhooks/slack/webhook
