@@ -1,4 +1,4 @@
-FROM rasa/rasa-sdk:2.7.0
+FROM rasa/rasa:latest-full
 
 COPY . /app/actions/
 COPY ./startup.sh /startup.sh
@@ -6,6 +6,8 @@ COPY ./startup.sh /startup.sh
 EXPOSE 5005
 ENV PORT 5005
 
+
+STOPSIGNAL SIGINT
 
 USER root
 RUN chmod a+rx /startup.sh
