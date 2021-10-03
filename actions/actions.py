@@ -46,6 +46,7 @@ class ActionCovid(Action):
         # answer = tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
         # start = answer.index("SEP") + 4
         # answer = answer[start:-5]
-        dispatcher.utter_message(text=f"{'this is the answer!'}")
+        # dispatcher.utter_message(text=f"{'this is the answer!'}")
+        dispatcher.utter_message(text='This is the answer from custom actions!')
 
         return []
