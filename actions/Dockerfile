@@ -1,4 +1,4 @@
-FROM rasa/rasa:latest-full
+FROM rasa/rasa-sdk:2.7.0
 
 COPY . /app/actions/
 COPY ./startup.sh /startup.sh

@@ -11,11 +11,11 @@ from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-import tensorflow as tf
-from transformers import TFAutoModelForQuestionAnswering
-from transformers import AutoTokenizer
-import src.config as cf
-from src.preprocessing import load_context_for_inference
+# import tensorflow as tf
+# from transformers import TFAutoModelForQuestionAnswering
+# from transformers import AutoTokenizer
+# import src.config as cf
+# from src.preprocessing import load_context_for_inference
 
 
 class ActionCovid(Action):
@@ -46,6 +46,7 @@ class ActionCovid(Action):
         # answer = tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
         # start = answer.index("SEP") + 4
         # answer = answer[start:-5]
-        dispatcher.utter_message(text=f"{'this is the answer!'}")
+        # dispatcher.utter_message(text=f"{'this is the answer!'}")
+        dispatcher.utter_message(text='ACTION SERVICE RESPONSE PLACEHOLDER')
 
         return []
